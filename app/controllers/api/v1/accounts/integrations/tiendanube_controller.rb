@@ -104,12 +104,10 @@ class Api::V1::Accounts::Integrations::TiendanubeController < Api::V1::Accounts:
   def fetch_customers
     return [] if contact.email.blank? && contact.phone_number.blank?
 
-    query_params = {}
-    query_params[:email] = contact.email if contact.email.present?
-    query_params[:phone] = contact.phone_number if contact.phone_number.present? && query_params.empty?
+    filter = contact.email.present? ? "?email=#{contact.email}" : ""
 
     response = HTTParty.get(
-      "#{TIENDANUBE_API_BASE}/#{store_id}/customers",
+      "#{TIENDANUBE_API_BASE}/#{store_id}/customers#{filter}",
       headers: api_headers,
       query: query_params
     )
@@ -121,9 +119,8 @@ class Api::V1::Accounts::Integrations::TiendanubeController < Api::V1::Accounts:
 
   def fetch_orders_for_customer(customer_id)
     response = HTTParty.get(
-      "#{TIENDANUBE_API_BASE}/#{store_id}/orders",
-      headers: api_headers,
-      query: { customer_id: customer_id }
+      "#{TIENDANUBE_API_BASE}/#{store_id}/orders?customer_ids=#{customer_id}",
+      headers: api_headers
     )
 
     return [] unless response.success?
@@ -131,7 +128,7 @@ class Api::V1::Accounts::Integrations::TiendanubeController < Api::V1::Accounts:
     orders = response.parsed_response || []
     orders.map do |order|
       order.merge(
-        'admin_url' => "https://#{store_id}.mitiendanube.com/admin/orders/#{order['id']}"
+        'admin_url' => "#{TIENDANUBE_API_BASE}/#{store_id}/orders/#{order['id']}"
       )
     end
   end

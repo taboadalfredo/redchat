@@ -20,6 +20,7 @@ import CustomAttributes from './customAttributes/CustomAttributes.vue';
 import Draggable from 'vuedraggable';
 import MacrosList from './Macros/List.vue';
 import ShopifyOrdersList from 'dashboard/components/widgets/conversation/ShopifyOrdersList.vue';
+import TiendanubeOrdersList from 'dashboard/components/widgets/conversation/TiendanubeOrdersList.vue';
 import SidebarActionsHeader from 'dashboard/components-next/SidebarActionsHeader.vue';
 import LinearIssuesList from 'dashboard/components/widgets/conversation/linear/IssuesList.vue';
 import LinearSetupCTA from 'dashboard/components/widgets/conversation/linear/LinearSetupCTA.vue';
@@ -52,6 +53,15 @@ const shopifyIntegration = useFunctionGetter(
 
 const isShopifyFeatureEnabled = computed(
   () => shopifyIntegration.value.enabled
+);
+
+const tiendanubeIntegration = useFunctionGetter(
+  'integrations/getIntegration',
+  'tiendanube'
+);
+
+const isTiendanubeFeatureEnabled = computed(
+  () => tiendanubeIntegration.value.enabled
 );
 
 const { isCloudFeatureEnabled } = useAccount();
@@ -283,6 +293,22 @@ onMounted(() => {
               "
             >
               <ShopifyOrdersList :contact-id="contactId" />
+            </AccordionItem>
+          </div>
+          <div
+            v-else-if="
+              element.name === 'tiendanube_orders' && isTiendanubeFeatureEnabled
+            "
+          >
+            <AccordionItem
+              :title="$t('CONVERSATION_SIDEBAR.ACCORDION.TIENDANUBE_ORDERS')"
+              :is-open="isContactSidebarItemOpen('is_tiendanube_orders_open')"
+              compact
+              @toggle="
+                value => toggleSidebarUIState('is_tiendanube_orders_open', value)
+              "
+            >
+              <TiendanubeOrdersList :contact-id="contactId" />
             </AccordionItem>
           </div>
           <div v-else-if="element.name === 'contact_notes'">
