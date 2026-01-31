@@ -1,5 +1,20 @@
 {
   "INTEGRATION_APPS": {
+    "TIENDANUBE": {
+      "DELETE": {
+        "TITLE": "Delete Tienda Nube Integration",
+        "MESSAGE": "Are you sure you want to delete the Tienda Nube integration?"
+      },
+      "AUTH_CODE": {
+        "TITLE": "Connect Tienda Nube Store",
+        "LABEL": "Authorization Code",
+        "PLACEHOLDER": "Enter your authorization code",
+        "HELP": "Enter the authorization code provided by Tienda Nube",
+        "CANCEL": "Cancel",
+        "SUBMIT": "Connect"
+      },
+      "ERROR": "There was an error connecting to Tienda Nube. Please try again or contact support if the issue persists."
+    },
     "FETCHING": "Fetching Integrations",
     "NO_HOOK_CONFIGURED": "There are no {integrationId} integrations configured in this account.",
     "HEADER": "Applications",

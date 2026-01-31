@@ -49,20 +49,7 @@ class Integrations::App
   end
 
   def active?(account)
-    case params[:id]
-    when 'slack'
-      GlobalConfigService.load('SLACK_CLIENT_SECRET', nil).present?
-    when 'linear'
-      account.feature_enabled?('linear_integration') && GlobalConfigService.load('LINEAR_CLIENT_ID', nil).present?
-    when 'shopify'
-      shopify_enabled?(account)
-    when 'leadsquared'
-      account.feature_enabled?('crm_integration')
-    when 'notion'
-      notion_enabled?(account)
-    else
-      true
-    end
+    true
   end
 
   def build_linear_action
@@ -125,5 +112,9 @@ class Integrations::App
 
   def notion_enabled?(account)
     account.feature_enabled?('notion_integration') && GlobalConfigService.load('NOTION_CLIENT_ID', nil).present?
+  end
+
+  def tiendanube_enabled?(account)
+    account.feature_enabled?('tiendanube_integration') && GlobalConfigService.load('TIENDANUBE_CLIENT_ID', nil).present?
   end
 end

@@ -15,6 +15,21 @@
       },
       "ERROR": "There was an error connecting to Shopify. Please try again or contact support if the issue persists."
     },
+    "TIENDANUBE": {
+      "DELETE": {
+        "TITLE": "Delete Tienda Nube Integration",
+        "MESSAGE": "Are you sure you want to delete the Tienda Nube integration?"
+      },
+      "AUTH_CODE": {
+        "TITLE": "Connect Tienda Nube Store",
+        "LABEL": "Authorization Code",
+        "PLACEHOLDER": "Enter your authorization code",
+        "HELP": "Enter the authorization code provided by Tienda Nube",
+        "CANCEL": "Cancel",
+        "SUBMIT": "Connect"
+      },
+      "ERROR": "There was an error connecting to Tienda Nube. Please try again or contact support if the issue persists."
+    },
     "HEADER": "Integrations",
     "DESCRIPTION": "Chatwoot integrates with multiple tools and services to improve your team's efficiency. Explore the list below to configure your favorite apps.",
     "LEARN_MORE": "Learn more about integrations",

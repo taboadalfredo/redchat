@@ -379,6 +379,19 @@
   type: secret
 # ------- End of Shopify Related Config ------- #
 
+# ------- Tienda Nube Integration Config ------- #
+- name: TIENDANUBE_CLIENT_ID
+  display_title: 'Tienda Nube Client ID'
+  description: 'The Client ID (API Key) from your Tienda Nube Partner account'
+  locked: false
+  type: secret
+- name: TIENDANUBE_CLIENT_SECRET
+  display_title: 'Tienda Nube Client Secret'
+  description: 'The Client Secret (API Secret Key) from your Tienda Nube Partner account'
+  locked: false
+  type: secret
+# ------- End of Tienda Nube Related Config ------- #
+
 # ------- Instagram Channel Related Config ------- #
 - name: INSTAGRAM_APP_ID
   display_title: 'Instagram App ID'

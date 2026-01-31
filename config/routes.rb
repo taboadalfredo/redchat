@@ -318,6 +318,12 @@ Rails.application.routes.draw do
                 get :orders
               end
             end
+            resource :tiendanube, controller: 'tiendanube', only: [:destroy] do
+              collection do
+                post :auth
+                get :orders
+              end
+            end
             resource :linear, controller: 'linear', only: [] do
               collection do
                 delete :destroy
@@ -572,6 +578,8 @@ Rails.application.routes.draw do
   namespace :shopify do
     resource :callback, only: [:show]
   end
+
+  # TiendaNube uses direct code exchange, no callback needed
 
   namespace :twilio do
     resources :callback, only: [:create]
